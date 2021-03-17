@@ -3,7 +3,7 @@
 # Filename    : UltrasonicRanging.py
 # Description : Get distance via UltrasonicRanging sensor
 # auther      : www.freenove.com
-# modification: 2019/12/28
+# modification: 2019/12/28 (Bryce Fletcher)
 ########################################################################
 import RPi.GPIO as GPIO
 import time
