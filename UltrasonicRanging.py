@@ -15,6 +15,7 @@ timeOut = MAX_DISTANCE*60   # calculate timeout according to the maximum measuri
 GPIO.setmode(GPIO.BOARD)  # use PHYSICAL GPIO Numbering
 GPIO.setup(trigPin, GPIO.OUT)  # set trigPin to OUTPUT mode
 GPIO.setup(echoPin, GPIO.IN)
+GPIO.setup(33, GPIO.OUT)
 
 def pulseIn(pin,level,timeOut): # obtain pulse time of a pin under timeOut
     t0 = time.time()
@@ -30,7 +31,7 @@ def pulseIn(pin,level,timeOut): # obtain pulse time of a pin under timeOut
     
 def getSonar():     # get the measurement results of ultrasonic module,with unit: cm
     GPIO.output(trigPin,GPIO.HIGH)      # make trigPin output 10us HIGH level 
-    time.sleep(0.00001)     # 10us
+    time.sleep(0.00000001)
     GPIO.output(trigPin,GPIO.LOW) # make trigPin output LOW level 
     pingTime = pulseIn(echoPin,GPIO.HIGH,timeOut)   # read plus time of echoPin
     distance = pingTime * 340.0 / 2.0 / 10000.0     # calculate distance with sound speed 340m/s 
@@ -42,12 +43,14 @@ def distance_light():
     while(True):
         distance = getSonar() # get distance
 
-        print ("The distance is : %.2f NATE SPEDS"%(distance))
+        print ("The distance is : %.2f Feet Away"%(distance))
         time.sleep(1)
         if distance<15 and distance > 0:
             print("light on")
+            GPIO.output(33,GPIO.HIGH)
         else :
             print ("light off")
+            GPIO.output(33,GPIO.LOW)
 
 
 distance_light()
