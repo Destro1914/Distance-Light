@@ -34,7 +34,7 @@ def getSonar():     # get the measurement results of ultrasonic module,with unit
     time.sleep(0.00000001)
     GPIO.output(trigPin,GPIO.LOW) # make trigPin output LOW level 
     pingTime = pulseIn(echoPin,GPIO.HIGH,timeOut)   # read plus time of echoPin
-    distance = pingTime * 340.0 / 2.0 / 10000.0     # calculate distance with sound speed 340m/s 
+    distance = pingTime * 340.0 / 2.0 / 10000.0     # calculate distance with sound speed 340m/s
     return distance
     
 
@@ -44,10 +44,11 @@ def distance_light():
         distance = getSonar() # get distance
 
         print ("The distance is : %.2f Feet Away"%(distance))
-        time.sleep(1)
+        time.sleep(.5)
         if distance<15 and distance > 0:
             print("light on")
             GPIO.output(33,GPIO.HIGH)
+            time.sleep(5)
         else :
             print ("light off")
             GPIO.output(33,GPIO.LOW)
