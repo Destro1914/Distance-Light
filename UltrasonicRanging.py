@@ -53,5 +53,5 @@ def distance_light():
             print ("light off")
             GPIO.output(33,GPIO.LOW)
 
-
-distance_light()
+if __name__=="__main__":
+    distance_light()
